@@ -1,0 +1,21 @@
+.container {
+    width: 100vw;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;  
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.card-body{
+    display: flex;
+    justify-content: space-between;
+}
+
+.setas-grid{
+    display: inline-grid!important;
+
+}

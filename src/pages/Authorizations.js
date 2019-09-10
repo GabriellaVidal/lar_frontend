@@ -99,11 +99,6 @@ class Authorizations extends Component {
         this.setState({selectedIdUser: this.state.users[e.target.value]._id})
     }
 
-    handleChangeUsers(e) {
-        //console.log('Seleção Usuários: ' + e.target.value); 
-        this.setState({selectedIdUser: this.state.users[e.target.value]._id})
-    }
-
     async componentDidMount() {
 
         if (isAuthenticated()) {

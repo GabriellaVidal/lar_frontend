@@ -1,47 +1,11 @@
 import React, { Component } from 'react';
-import { useDrop } from 'react-dnd';
-import ItemTypes from './ItemTypes';
+import Dustbin from './plugin/Dustbin';
+import Box from './plugin/Box';
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 import api from "../services/api";
 
 import './Authorization.css'
-
-const style: React.CSSProperties = {
-  height: '12rem',
-  width: '12rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
-  color: 'white',
-  padding: '1rem',
-  textAlign: 'center',
-  fontSize: '1rem',
-  lineHeight: 'normal',
-  float: 'left',
-}
-
-const Dustbin: React.FC = () => {
-  const [{ canDrop, isOver }, drop] = useDrop({
-    accept: ItemTypes.BOX,
-    drop: () => ({ name: 'Dustbin' }),
-    collect: monitor => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-  })
-
-  const isActive = canDrop && isOver
-  let backgroundColor = '#222'
-  if (isActive) {
-    backgroundColor = 'darkgreen'
-  } else if (canDrop) {
-    backgroundColor = 'darkkhaki'
-  }
-
-  // return (
-  //   <div ref={drop} style={{ ...style, backgroundColor }}>
-  //     {isActive ? 'Release to drop' : 'Drag a box here'}
-  //   </div>
-  // )
-}
 
 class AuthorizationCard extends Component { 
     constructor(props){
@@ -223,42 +187,23 @@ class AuthorizationCard extends Component {
     render() {
         return (
             <div className="cardauth">
-
-                    <div className="card-info">     
-                        <span> Dispositivo: {this.state.device_name} </span> 
-                        <span className="user"> Usuário: {this.state.user_name} </span> 
-                    </div>
+                <div className="card-info col-sm-8">     
+                    <span> Dispositivo: {this.state.device_name} </span> 
+                    <span className="user"> Usuário: {this.state.user_name} </span> 
+                </div>
+                <div class="col-sm-2">
                     <form onSubmit={this.handleSubmit}>
                         <button type="submit" className="btn btn-primary">
                             Deletar 
                         </button> 
                     </form>
-                    <div class="row align-items-center">
-                        <button type="button" className="btn btn-success"onClick={()=> this.clickEsquerda(this.state.device_id, this.state.user_id)} value="{this.state.device_id}">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        </button> 
-                    </div>
-                    <div class="row setas-grid">
-                        <button type="button" className="btn btn-success" onClick={()=> this.clickAndar(this.state.device_id, this.state.user_id)}>
-                            <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                        </button>
-                        <button type="button" className="btn btn-danger"onClick={()=> this.clickParar(this.state.device_id, this.state.user_id)} value="{this.state.device_id}">
-                            <i class="fa fa-stop" aria-hidden="true"></i>
-                        </button> 
-                        <button type="button" className="btn btn-success"onClick={()=> this.clickRe(this.state.device_id, this.state.user_id)} value="{this.state.device_id}">
-                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                        </button> 
-                    </div>
-                    <div class="row align-items-center">
-                        <button type="button" className="btn btn-success"onClick={()=> this.clickDireita(this.state.device_id, this.state.user_id)} value="{this.state.device_id}">
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                        </button>
-                    </div>
-
+                </div>
+                <div class="col-sm-2">
+                    <a href="actions" type="button" className="btn btn-success">
+                        Ações
+                    </a> 
+                </div>
             </div>
-            <div ref={drop} style={{ ...style, backgroundColor }}>
-                {isActive ? 'Release to drop' : 'Drag a box here'}
-            </div> 
         );
     }
 }
