@@ -30,7 +30,7 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
     backgroundColor = 'darkkhaki'
   }
   return (
-    <div ref={drop} style={{ ...style, backgroundColor }}>
+    <div id="selectedBox" ref={drop} style={{ ...style, backgroundColor }}>
       {isActive
         ? 'Solte o comando na área selecionada'
         : `Arraste novos camandos`}
@@ -40,10 +40,9 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
           {(() => {
             const buttons = [];
             for (let i = 0; i < droppedBoxNames.length; i++) {
-              console.log(droppedBoxNames[i]);
               buttons.push(<button 
                 name={droppedBoxNames[i].name} 
-                class={droppedBoxNames[i].classeName}
+                className={droppedBoxNames[i].classeName}
                 dangerouslySetInnerHTML={{__html: droppedBoxNames[i].html}}
                 ></button>);
             }

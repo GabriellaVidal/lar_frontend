@@ -68,7 +68,7 @@ class Authorizations extends Component {
         const request = await api.get('/device');
         if(request !== undefined){
             this.setState({devices: request.data.devices}); 
-            console.log(this.state.devices); 
+            // console.log(this.state.devices); 
         }
     }
 
@@ -76,7 +76,7 @@ class Authorizations extends Component {
         const request = await api.get('/auth/users');
         if(request !== undefined){
             this.setState({users: request.data.users}); 
-            console.log(this.state.users); 
+            // console.log(this.state.users); 
         }
     }
 
@@ -84,7 +84,7 @@ class Authorizations extends Component {
         const request = await api.get('/authorization/full');
         if(request !== undefined){
             this.setState({authorizations: request.data.authorizations}); 
-            console.log(this.state.authorizations); 
+            // console.log(this.state.authorizations); 
         }
     }
         

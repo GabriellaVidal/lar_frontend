@@ -1,7 +1,8 @@
-import React, { Component, useState, useCallback } from 'react';
+import React, { Component } from 'react';
 import { isAuthenticated } from '../services/auth'; 
 import { Redirect } from 'react-router'
-import Footer from '../components/Footer'; 
+import Footer from '../components/Footer';
+
 
 import Example from '../components/plugin/example';
 import { DndProvider } from 'react-dnd'
@@ -14,23 +15,190 @@ import "../components/Action.css"
 class Actions extends Component { 
     constructor(props){ 
         super(props);
+        this.id = this.props.location.search.replace("?", "");
+        this.state = {
+            selectedIdUser: "",
+            selectedIdDevice: "", 
+            devices: [],
+            selectedDevice: "",
+            users: [], 
+            error: "",
+            authorization: []
+        };
     }
 
     populateAuthorization = async () => {
-        const request = await api.get('/authorization/full');
+
+        const request = await api.put('/authorization/'+this.id);
         if(request !== undefined){
-            this.setState({authorizations: request.data.authorizations}); 
-            console.log(this.state.authorizations); 
+            this.setState({authorization: request.data.authorization}); 
         }
     }
+
 
     async componentDidMount() {
 
         if (isAuthenticated()) {
             document.title = "Ações";
-            await this.populateAuthorization();  
+            await this.populateAuthorization(); 
         }
     }
+    
+    async playCarrinho() {
+        const buttons = document.getElementById("selectedBox")
+            .getElementsByTagName( 'button' );
+        const comandos = [];
+        for (var i = buttons.length - 1; i >= 0; i--) {
+            comandos[i] = buttons[i].getAttribute('name');
+        }
+        console.log(this.state.authorization);
+        if(comandos.length > 0){
+            const response = await api.put("/device/movimentar/", {
+                device: this.state.authorization.device_id, 
+                user: this.state.authorization.user_id, 
+                value: JSON.stringify(comandos)
+            });
+            console.log(response);
+        } else{
+           alert("Comandos não foram enviados!");  
+        }
+    }
+
+    async clickAndar(deviceId, userId){
+
+        let device = deviceId; 
+        let user = userId; 
+        const enabled = "andar"; 
+        try {
+            const response = await api.put("/device/movimentar/", {device: device, user: user, value: enabled});
+
+            if ( response.data.result === "ok" ){
+                alert("Andar com sucesso!"); 
+            }
+            // console.log(response.data); 
+                
+        } catch (err) {
+            // console.log(err);
+            this.setState({
+            error:
+                "Houve um problema no cadastro de autorização."
+            });
+        }
+
+        if (  this.state.error !== 0  ){
+            // alert(this.state.error);
+            console.log("Error:"+this.state.error+"!");
+        } 
+    }
+
+    async clickParar(deviceId, userId){
+
+        let device = deviceId; 
+        let user = userId; 
+        const enabled = "parar"; 
+        try {
+            const response = await api.put("/device/movimentar/", {device: device, user: user, value: enabled});
+
+            if ( response.data.result === "ok" ){
+                alert("Parar sucesso!"); 
+            }
+            // console.log(response.data); 
+                
+        } catch (err) {
+            // console.log(err);
+            this.setState({
+            error:
+                "Houve um problema no cadastro de autorização."
+            });
+        }
+
+        if (  this.state.error !== 0  ){
+            // alert(this.state.error);
+            console.log("Error:"+this.state.error+"!");
+        } 
+    }
+
+    async clickDireita(deviceId, userId){
+
+        let device = deviceId; 
+        let user = userId; 
+        const enabled = "andarDireita"; 
+        try {
+            const response = await api.put("/device/movimentar/", {device: device, user: user, value: enabled});
+
+            if ( response.data.result === "ok" ){
+                alert("Virar com sucesso!"); 
+            }
+            // console.log(response.data); 
+                
+        } catch (err) {
+            // console.log(err);
+            this.setState({
+            error:
+                "Houve um problema no cadastro de autorização."
+            });
+        }
+
+        if (  this.state.error !== 0  ){
+            // alert(this.state.error);
+            console.log("Error:"+this.state.error+"!");
+        } 
+    }
+
+    async clickEsquerda(deviceId, userId){
+
+        let device = deviceId; 
+        let user = userId; 
+        const enabled = "andarEsquerda"; 
+        try {
+            const response = await api.put("/device/movimentar/", {device: device, user: user, value: enabled});
+
+            if ( response.data.result === "ok" ){
+                alert("Virar com sucesso!"); 
+            }
+            // console.log(response.data); 
+                
+        } catch (err) {
+            // console.log(err);
+            this.setState({
+            error:
+                "Houve um problema no cadastro de autorização."
+            });
+        }
+
+        if (  this.state.error !== 0  ){
+            // alert(this.state.error);
+            console.log("Error:"+this.state.error+"!");
+        } 
+    }
+
+    async clickRe(deviceId, userId){
+
+        let device = deviceId; 
+        let user = userId; 
+        const enabled = "re"; 
+        try {
+            const response = await api.put("/device/movimentar/", {device: device, user: user, value: enabled});
+
+            if ( response.data.result === "ok" ){
+                alert("Virar com sucesso!"); 
+            }
+            // console.log(response.data); 
+                
+        } catch (err) {
+            // console.log(err);
+            this.setState({
+            error:
+                "Houve um problema no cadastro de autorização."
+            });
+        }
+
+        if (  this.state.error !== 0  ){
+            // alert(this.state.error);
+            console.log("Error:"+this.state.error+"!");
+        } 
+    }
+
 
     render() {
         return ( 
@@ -39,12 +207,12 @@ class Actions extends Component {
                     <Redirect to="/login"/> : 
                     <div className="container">
                         <div className="card-body">
-                            <div class="row">
-                                <button type="button" className="btn btn-info">
-                                    <i class="fa fa-play" aria-hidden="true"></i>
+                            <div className="row">
+                                <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
+                                    <i className="fa fa-play" aria-hidden="true"></i>
                                 </button>
                             </div>
-                            <div class="row">
+                            <div className="row">
                                 <DndProvider backend={HTML5Backend}>
                                     <Example/>
                                 </DndProvider>
@@ -59,5 +227,3 @@ class Actions extends Component {
 }
 
 export default Actions; 
-
-                                    // #<button type="button" className="btn btn-info" onClick={()=> this.getComandos(this.state.device_id)}">

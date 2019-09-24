@@ -10,13 +10,13 @@ export default function Header() {
             <div className="header-content">
 	            <Dropdown>
 				  	<Dropdown.Toggle variant="" id="dropdown-basic">
-						<i class="fa fa-bars" aria-hidden="true"></i>
+						<i className="fa fa-bars" aria-hidden="true"></i>
 				  	</Dropdown.Toggle>
 
 				  	<Dropdown.Menu>
-				    	<Dropdown.Item href="user">Users</Dropdown.Item>
-				    	<Dropdown.Item href="devices">Devices</Dropdown.Item>
-				    	<Dropdown.Item href="authorizations">Authorization</Dropdown.Item>
+				    	<Dropdown.Item href="/user">Users</Dropdown.Item>
+				    	<Dropdown.Item href="/devices">Devices</Dropdown.Item>
+				    	<Dropdown.Item href="/authorizations">Authorization</Dropdown.Item>
 				  	</Dropdown.Menu>
 				</Dropdown>
                 <h1>Acesso - IoT </h1>
