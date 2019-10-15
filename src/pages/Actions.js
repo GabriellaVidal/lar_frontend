@@ -206,17 +206,15 @@ class Actions extends Component {
                 { (!isAuthenticated() ) ? 
                     <Redirect to="/login"/> : 
                     <div className="container">
-                        <div className="card-body">
-                            <div className="row">
-                                <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
-                                    <i className="fa fa-play" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div className="row">
-                                <DndProvider backend={HTML5Backend}>
-                                    <Example/>
-                                </DndProvider>
-                            </div>
+                        <div className="row">
+                            <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
+                                <i className="fa fa-play" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div className="row">
+                            <DndProvider backend={HTML5Backend}>
+                                <Example/>
+                            </DndProvider>
                         </div>
                     </div>
                 }

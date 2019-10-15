@@ -13,6 +13,9 @@ const style = {
   lineHeight: 'normal',
   float: 'left',
 }
+const styleButtons = {
+  display: 'flex',
+}
 const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept,
@@ -33,7 +36,7 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
     <div id="selectedBox" ref={drop} style={{ ...style, backgroundColor }}>
       {isActive
         ? 'Solte o comando na área selecionada'
-        : `Arraste novos camandos`}
+        : 'Arraste para montar Função'}
 
       {lastDroppedItem && (
         <div>

@@ -3,6 +3,12 @@ import Dustbin from './Dustbin'
 import Box from './Box'
 import ItemTypes from './ItemTypes'
 import update from 'immutability-helper'
+const style = {
+  display: 'flex', 
+  flexWrap: 'wrap', 
+  justifyContent: 'space-between', 
+  flexDirection: 'row'
+}
 const Container = () => {
   const [dustbins, setDustbins] = useState([
     { accepts: [ItemTypes.BOX], lastDroppedItem: null },
@@ -13,6 +19,7 @@ const Container = () => {
     { name: 'stop', classeName: 'btn btn-danger', html: '<i class="fa fa-stop" aria-hidden="true"></i>', type: ItemTypes.BOX },
     { name: 'down', classeName: 'btn btn-success', html: '<i class="fa fa-arrow-down" aria-hidden="true"></i>', type: ItemTypes.BOX },
     { name: 'right', classeName: 'btn btn-success', html: '<i class="fa fa-arrow-right" aria-hidden="true"></i>', type: ItemTypes.BOX },
+    { name: 'function', classeName: 'btn btn-info', html: '<i class="fa fa-cog" aria-hidden="true"></i>', type: ItemTypes.BOX },
   ])
   const [droppedBoxNames, setDroppedBoxNames] = useState([])
   function isDropped(boxName) {
@@ -37,20 +44,61 @@ const Container = () => {
     [droppedBoxNames, dustbins],
   )
   return (
-    <div>
-      <div style={{ overflow: 'hidden', clear: 'both' }}>
-        {dustbins.map(({ accepts, lastDroppedItem }, index) => (
-          <Dustbin
-            accept={accepts}
-            lastDroppedItem={lastDroppedItem}
-            droppedBoxNames={droppedBoxNames}
-            onDrop={item => handleDrop(index, item)}
-            key={index}
-          />
-        ))}
+    <div class="container" style={{ ...style}}>
+      <div class="col-sm-3">
+        <div style={{ overflow: 'hidden', clear: 'both' }}>
+          {dustbins.map(({ accepts, lastDroppedItem }, index) => (
+            <Dustbin
+              accept={accepts}
+              lastDroppedItem={lastDroppedItem}
+              droppedBoxNames={droppedBoxNames}
+              onDrop={item => handleDrop(index, item)}
+              key={index}
+            />
+          ))}
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div style={{ overflow: 'hidden', clear: 'both' }}>
+          {dustbins.map(({ accepts, lastDroppedItem }, index) => (
+            <Dustbin
+              accept={accepts}
+              lastDroppedItem={lastDroppedItem}
+              droppedBoxNames={droppedBoxNames}
+              onDrop={item => handleDrop(index, item)}
+              key={index}
+            />
+          ))}
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div style={{ overflow: 'hidden', clear: 'both' }}>
+          {dustbins.map(({ accepts, lastDroppedItem }, index) => (
+            <Dustbin
+              accept={accepts}
+              lastDroppedItem={lastDroppedItem}
+              droppedBoxNames={droppedBoxNames}
+              onDrop={item => handleDrop(index, item)}
+              key={index}
+            />
+          ))}
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div style={{ overflow: 'hidden', clear: 'both' }}>
+          {dustbins.map(({ accepts, lastDroppedItem }, index) => (
+            <Dustbin
+              accept={accepts}
+              lastDroppedItem={lastDroppedItem}
+              droppedBoxNames={droppedBoxNames}
+              onDrop={item => handleDrop(index, item)}
+              key={index}
+            />
+          ))}
+        </div>
       </div>
 
-      <div style={{ overflow: 'hidden', clear: 'both' }}>
+      <div style={{ overflow: 'hidden', clear: 'both', display: 'flex' }}>
         {boxes.map(({ name, classeName, html, type }, index) => (
           <Box
             name={name}
