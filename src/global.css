@@ -11,3 +11,9 @@ body {
     font: 14px Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased !important; 
 }
+
+.diviser{
+	/*position: absolute;*/
+    /*left: 0;*/
+
+}

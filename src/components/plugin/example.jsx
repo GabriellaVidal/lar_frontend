@@ -45,7 +45,10 @@ const Container = () => {
   )
   return (
     <div class="container" style={{ ...style}}>
-      <div class="col-sm-3">
+      <div class="col-sm-12 diviser">
+        <hr></hr>
+      </div>
+      <div class="col-sm-3 diviser">
         <div style={{ overflow: 'hidden', clear: 'both' }}>
           {dustbins.map(({ accepts, lastDroppedItem }, index) => (
             <Dustbin
