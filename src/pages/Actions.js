@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 
 
 import Example from '../components/plugin/example';
+import CreateFunction from '../components/plugin/createFunction';
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
@@ -44,6 +45,12 @@ class Actions extends Component {
         }
     }
     
+    async criarFuncao() {
+        console.log("kjfcd");
+        document.getElementId("function-box")
+            .setAttribute('style', 'display: block');;
+    }
+
     async playCarrinho() {
         const buttons = document.getElementById("selectedBox")
             .getElementsByTagName( 'button' );
@@ -205,16 +212,16 @@ class Actions extends Component {
             <div >
                 { (!isAuthenticated() ) ? 
                     <Redirect to="/login"/> : 
-                    <div className="container">
-                        <div className="row">
-                            <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
-                                <i className="fa fa-play" aria-hidden="true"></i>
-                            </button>
-                        </div>
+                    <div className="container cardauth">
                         <div className="row">
                             <DndProvider backend={HTML5Backend}>
                                 <Example/>
                             </DndProvider>
+                        </div>
+                        <div className="row">
+                            <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
+                                <i className="fa fa-play" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                 }

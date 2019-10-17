@@ -8,8 +8,8 @@ const Box = ({ name, classeName, html, type, isDropped }) => {
     }),
   })
   return (
-    <button name={name} className={classeName} ref={drag} 
-    dangerouslySetInnerHTML={{__html: html}}>
+    <button data-name={name} className={classeName} ref={drag} 
+    dangerouslySetInnerHTML={{__html: html}} style={{ margin: '5px'}}>
     </button>
   )
 }
