@@ -12,6 +12,9 @@ const style = {
   fontSize: '1rem',
   lineHeight: 'normal',
   float: 'left',
+  display: 'flex',
+  alignItems: 'end',
+  flexWrap: 'wrap',
 }
 const styleButtons = {
   display: 'flex',
@@ -34,12 +37,12 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
   }
   return (
     <div id="selectedBox" ref={drop} style={{ ...style, backgroundColor }}>
-      {isActive
+      <p>{isActive
         ? 'Solte o comando na área selecionada'
-        : 'Arraste para montar Função'}
+        : 'Arraste para montar Função'}</p>
 
       {lastDroppedItem && (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', alignItems: 'center'}}>
           {(() => {
             const buttons = [];
             for (let i = 0; i < droppedBoxNames.length; i++) {

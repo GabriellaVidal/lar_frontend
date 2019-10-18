@@ -219,9 +219,13 @@ class Actions extends Component {
                             </DndProvider>
                         </div>
                         <div className="row">
-                            <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
-                                <i className="fa fa-play" aria-hidden="true"></i>
-                            </button>
+                            <div className="container">
+                                <div className="col-sm-2">
+                                    <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
+                                        <i className="fa fa-play" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 }

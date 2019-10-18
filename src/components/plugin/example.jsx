@@ -17,8 +17,8 @@ const Container = () => {
     { name: 'left', classeName: 'btn btn-success', html: '<i class="fa fa-arrow-left" aria-hidden="true"></i>', type: ItemTypes.BOX },
     { name: 'up', classeName: 'btn btn-success', html: '<i class="fa fa-arrow-up" aria-hidden="true"></i>', type: ItemTypes.BOX },
     // { name: 'stop', classeName: 'btn btn-danger', html: '<i class="fa fa-stop" aria-hidden="true"></i>', type: ItemTypes.BOX },
-    { name: 'down', classeName: 'btn btn-success', html: '<i class="fa fa-arrow-down" aria-hidden="true"></i>', type: ItemTypes.BOX },
-    { name: 'right', classeName: 'btn btn-success', html: '<i class="fa fa-arrow-right" aria-hidden="true"></i>', type: ItemTypes.BOX },
+    { name: 'down', classeName: 'btn btn-success', html: '<i class="fa fa-reply" aria-hidden="true"></i>', type: ItemTypes.BOX },
+    { name: 'right', classeName: 'btn btn-success', html: '<i class="fa fa-share" aria-hidden="true"></i>', type: ItemTypes.BOX },
     // { name: 'function', classeName: 'btn btn-info', html: '<i class="fa fa-cog" aria-hidden="true"></i>', type: ItemTypes.BOX },
   ])
   const [droppedBoxNames, setDroppedBoxNames] = useState([])
