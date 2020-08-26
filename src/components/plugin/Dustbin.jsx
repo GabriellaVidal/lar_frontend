@@ -42,15 +42,24 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
         : 'Arraste para montar Função'}</p>
 
       {lastDroppedItem && (
-        <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', alignItems: 'center'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', margin: 'auto', alignItems: 'center'}}>
           {(() => {
             const buttons = [];
             for (let i = 0; i < droppedBoxNames.length; i++) {
-              buttons.push(<button 
-                name={droppedBoxNames[i].name} 
-                className={droppedBoxNames[i].classeName}
-                dangerouslySetInnerHTML={{__html: droppedBoxNames[i].html}}
-                ></button>);
+              if(i == droppedBoxNames.length - 1){
+                buttons.push(<button 
+                  name={droppedBoxNames[i].name} 
+                  className={droppedBoxNames[i].classeName}
+                  dangerouslySetInnerHTML={{__html: droppedBoxNames[i].html}}
+                  ></button>);
+              } else{
+                buttons.push(<button 
+                  name={droppedBoxNames[i].name} 
+                  className={droppedBoxNames[i].classeName}
+                  dangerouslySetInnerHTML={{__html: droppedBoxNames[i].html}}
+                  ></button>);
+                buttons.push(<div className="linha" style={{ color: '#DDDDDD' }}><i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>);
+              }
             }
             return buttons;
           })()}
