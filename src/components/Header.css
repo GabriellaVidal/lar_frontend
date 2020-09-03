@@ -1,0 +1,19 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css";
+
+header#main-header {
+    background: #fff; 
+    height: 90px;
+    border-bottom: 1px solid #BBB; 
+}
+
+header#main-header .header-content {
+    width: 100%;
+    max-width: 980px; 
+    margin: 0 auto; 
+    height: 82px;
+    padding: 0 30px; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
