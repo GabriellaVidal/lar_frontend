@@ -42,7 +42,7 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
         : 'Arraste para montar Função'}</p>
 
       {lastDroppedItem && (
-        <div style={{ display: 'flex', flexDirection: 'row', margin: 'auto', alignItems: 'center'}}>
+        <div id="boxPreenchido" style={{ display: 'flex', flexDirection: 'row', margin: 'auto', alignItems: 'center'}}>
           {(() => {
             const buttons = [];
             for (let i = 0; i < droppedBoxNames.length; i++) {
@@ -55,10 +55,9 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
                 buttons.push(<input type="number" className="form-control" name="numero"/>);
               }
               if(i != droppedBoxNames.length - 1){
-                buttons.push(<div className="linha" style={{ color: '#DDDDDD', marginLeft: '15px' }}><i class="fa fa-long-arrow-right" aria-hidden="true"></i></div>);
+                buttons.push(<div className="linha" style={{ color: '#DDDDDD', marginLeft: '15px' }}><i className="fa fa-long-arrow-right" aria-hidden="true"></i></div>);
               }
             }
-            console.log(buttons);
             return buttons;
           })()}
         </div>

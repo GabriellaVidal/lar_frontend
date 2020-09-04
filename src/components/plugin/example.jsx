@@ -45,8 +45,8 @@ const Container = () => {
     [droppedBoxNames, dustbins],
   )
   return (
-    <div class="container" style={{ ...style}}>
-      <div class="col-sm-2">
+    <div className="container" style={{ ...style}}>
+      <div className="col-sm-2">
         <div>
           {boxes.map(({ name, classeName, html, type }, index) => (
             <Box
@@ -60,7 +60,7 @@ const Container = () => {
           ))}
         </div>
       </div>
-      <div class="col-sm-10">
+      <div className="col-sm-10">
         <div style={{ overflow: 'hidden', clear: 'both' }}>
           {dustbins.map(({ accepts, lastDroppedItem }, index) => (
             <Dustbin

@@ -29,7 +29,6 @@ class Actions extends Component {
     }
 
     populateAuthorization = async () => {
-        alert('oii');
         const request = await api.put('/authorization/'+this.id);
         if(request !== undefined){
             this.setState({authorization: request.data.authorization}); 
@@ -41,20 +40,20 @@ class Actions extends Component {
         if (isAuthenticated()) {
             document.title = "Ações";
             await this.populateAuthorization(); 
-            this.subscribe();
+            // this.subscribe();
         }
     }
 
-    async subscribe() {
-        // setInterval(function() { 
-            const response = await api.put("/device/retornoCarrinho/", {
-                device: this.state.authorization.device_id, 
-                user: this.state.authorization.user_id
-            });
-            console.log(response);
-            console.log(response.data);
-        // }, 0);
-    }
+    // async subscribe() {
+    //     // setInterval(function() { 
+    //         const response = await api.put("/device/retornoCarrinho/", {
+    //             device: this.state.authorization.device_id, 
+    //             user: this.state.authorization.user_id
+    //         });
+    //         console.log(response);
+    //         console.log(response.data);
+    //     // }, 0);
+    // }
     
     async criarFuncao() {
         console.log("kjfcd");
@@ -63,20 +62,51 @@ class Actions extends Component {
     }
 
     async playCarrinho() {
-        const buttons = document.getElementById("selectedBox")
-            .getElementsByTagName( 'button' );
+        const items = document.getElementById("boxPreenchido").childNodes;
+        // const buttons = document.getElementById("BoxPreenchido").getElementsByTagName( 'button' );
+
         const comandos = [];
-        for (var i = buttons.length - 1; i >= 0; i--) {
-            comandos[i] = buttons[i].getAttribute('name');
+        for (var i = items.length - 1; i >= 0; i--) {
+            if(items[i].classList.contains('btn')){
+                const comandoNome = items[i].getAttribute('name');
+                if(comandoNome == 'multiple'){
+                    const quantidade = items[i+1].value;
+                    for (var j = 0; j < parseInt(quantidade) - 1; j++) {
+                        comandos.push({
+                            'comando':items[i-2].getAttribute('name'),
+                            'index': i,
+                            'classOrigin': items[i].classList[1]
+                        });
+                    }
+                    items[i].classList.remove("btn-warning");
+                    items[i].classList.add("btn-default");
+                } else {
+                    comandos.push({
+                        'comando': items[i].getAttribute('name'),
+                        'index': i,
+                        'classOrigin': items[i].classList[1]
+                    });
+                    items[i].classList.remove("btn-success");
+                    items[i].classList.add("btn-default");
+                }
+            }
         }
-        console.log(this.state.authorization);
+        comandos.reverse()
+        console.log(comandos)
         if(comandos.length > 0){
-            const response = await api.put("/device/movimentar/", {
-                device: this.state.authorization.device_id, 
-                user: this.state.authorization.user_id, 
-                value: JSON.stringify(comandos)
-            });
-            console.log(response);
+            for (var i in comandos){
+                const response = await api.put("/device/movimentar/", {
+                    device: this.state.authorization.device_id, 
+                    user: this.state.authorization.user_id, 
+                    value: JSON.stringify(comandos[i].comando)
+                });
+                console.log(response);
+                console.log(response.data);
+                if(response.data.subscribe == 'feito'){
+                    items[comandos[i].index].classList.remove("btn-default");
+                    items[comandos[i].index].classList.add(comandos[i].classOrigin);
+                }
+            }
         } else{
            alert("Comandos não foram enviados!");  
         }
