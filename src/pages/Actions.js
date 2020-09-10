@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { isAuthenticated } from '../services/auth'; 
 import { Redirect } from 'react-router'
+import swal from 'sweetalert';
 import Footer from '../components/Footer';
 
 
@@ -64,6 +65,8 @@ class Actions extends Component {
     async playCarrinho() {
         const items = document.getElementById("boxPreenchido").childNodes;
         // const buttons = document.getElementById("BoxPreenchido").getElementsByTagName( 'button' );
+        const botaoPlay = document.getElementById("botaoPlay");
+        botaoPlay.setAttribute('disabled', true);
 
         const comandos = [];
         for (var i = items.length - 1; i >= 0; i--) {
@@ -75,16 +78,19 @@ class Actions extends Component {
                         comandos.push({
                             'comando':items[i-2].getAttribute('name'),
                             'index': i,
-                            'classOrigin': items[i].classList[1]
+                            'classOrigin': items[i].classList[1],
+                            'type': comandoNome
                         });
                     }
+                    items[i+1].setAttribute('disabled', true);
                     items[i].classList.remove("btn-warning");
                     items[i].classList.add("btn-default");
                 } else {
                     comandos.push({
                         'comando': items[i].getAttribute('name'),
                         'index': i,
-                        'classOrigin': items[i].classList[1]
+                        'classOrigin': items[i].classList[1],
+                        'type': comandoNome
                     });
                     items[i].classList.remove("btn-success");
                     items[i].classList.add("btn-default");
@@ -105,10 +111,30 @@ class Actions extends Component {
                 if(response.data.subscribe == 'feito'){
                     items[comandos[i].index].classList.remove("btn-default");
                     items[comandos[i].index].classList.add(comandos[i].classOrigin);
+                    if(comandos[i].type == 'multiple'){
+                        items[comandos[i].index+1].removeAttribute('disabled');
+                    }
+                }
+                if(i == comandos.length-1){
+                    botaoPlay.removeAttribute('disabled');
+                    this.finalizado();
                 }
             }
         } else{
-           alert("Comandos não foram enviados!");  
+           swal("OPs!", "Comandos não foram enviados!", "error");  
+        }
+    }
+
+    async finalizado(){
+        const response = await api.put("/device/movimentar/", {
+                    device: this.state.authorization.device_id, 
+                    user: this.state.authorization.user_id, 
+                    value: JSON.stringify("finalizado")
+                });
+        if(response.data.subscribe == 'feito'){
+            swal("Parabéns!", "Trajeto Finalizado!", "success");
+        } else {
+            swal("OPs!", "Problemas ao finalizar", "error");
         }
     }
 
@@ -262,7 +288,7 @@ class Actions extends Component {
                         <div className="row">
                             <div className="container">
                                 <div className="col-sm-2">
-                                    <button type="button" className="btn btn-info" onClick={()=> this.playCarrinho()}>
+                                    <button type="button" className="btn btn-info" id="botaoPlay" onClick={()=> this.playCarrinho()}>
                                         <i className="fa fa-play" aria-hidden="true"></i>
                                     </button>
                                 </div>
