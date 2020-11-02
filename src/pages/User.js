@@ -22,8 +22,6 @@ class User extends Component {
 
 
     populateAuthorizations = async () => {
-        
-        //axios.defaults.headers.common = {'Authorization': `Bearer ${this.auth.getToken()}`}
         const request = await api.get('/authorization/devices');
         if(request !== undefined){
             const data = request.data.authorizations;

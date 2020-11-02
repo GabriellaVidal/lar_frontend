@@ -93,7 +93,7 @@ class Login extends Component {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary"onClick={this.authenticateUser} >Entrar</button>
+                    <button type="submit" className="btn btn-primary btn-login" onClick={this.authenticateUser} >Entrar</button>
                     <hr />
                     <Link to="/signup">Cadastrar Usuário</Link>
                 </form>

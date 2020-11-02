@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Footer from '../components/Footer';
  
 import './Devices.css';
 import api from "../services/api";
@@ -126,6 +127,7 @@ class Devices extends Component {
                 </form>
             </div>
             </div>
+            <Footer></Footer>
             </div>
         );
     }

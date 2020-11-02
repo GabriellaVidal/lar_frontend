@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { logout } from "../services/auth"; 
 import { getUserName } from "../services/auth";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Button from 'react-bootstrap/Button';
 
 import './Footer.css'; 
 
@@ -36,18 +38,27 @@ class Footer extends Component {
         console.log("footer: "+getUserName() ); 
     }
 
+    async redirecionamentosFooterMenu(url){
+        return window.location.href = "/"+url;
+    }
+
     render() {
         return (
             
             <footer>
                 {this.renderRedirect()}
-                <div className="footer-content">
+                 <ButtonGroup aria-label="Basic example">
+                  <Button type="button" variant="secondary" size="lg" onClick={()=> this.redirecionamentosFooterMenu('user')}><i class="fa fa-users fa-2x" aria-hidden="true"></i></Button>
+                  <Button type="button" variant="secondary" size="lg" onClick={()=> this.redirecionamentosFooterMenu('devices')}><i class="fa fa-rocket fa-2x" aria-hidden="true"></i></Button>
+                  <Button type="button" variant="secondary" size="lg" onClick={()=> this.redirecionamentosFooterMenu('authorizations')}><i class="fa fa-check fa-2x" aria-hidden="true"></i></Button>
+                </ButtonGroup>
+                {/*<div className="footer-content">
                     <p>{this.state.userName}</p>
                     
                     <button type="submit" className="btn btn-link" onClick={this.makeLogout}>
                             Sair
                     </button> 
-                </div>
+                </div>*/}
 
             </footer>
         )

@@ -17,3 +17,23 @@ header#main-header .header-content {
     align-items: center; 
     justify-content: space-between;
 }
+
+.dropdown-toggle::after {
+    color: #455A64;
+}
+.btn-transparent{
+    background-color: unset;
+    display: flex;
+    align-items: center;
+    height: auto;
+}
+
+.info-user{
+    display: flex;
+    align-items: center;
+}
+
+.info-user h4{
+    color: #000;
+    font-weight: 700;
+}
