@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import api from "../services/api";
+import Button from 'react-bootstrap/Button';
 
-import './Authorization.css'
+import '../pages/Authorization.css'
 
 class AuthorizationCard extends Component { 
     constructor(props){
@@ -47,24 +48,37 @@ class AuthorizationCard extends Component {
 
     render() {
         return (
-            <div className="cardauth">
-                <div className="card-info col-sm-8">     
+            <div>
+            <div className="cardauth cardauth-mobile">
+                <div className="card-info">     
+                    <span> Dispositivo: {this.state.id} </span> 
+                    <span> Dispositivo: {this.state.device_name} </span> 
+                    <span className="user"> Usuário: {this.state.user_name} </span> 
+                <div className="acoes">
+                    <form onSubmit={this.handleSubmit}>
+                        <button type="submit" className="btn btn-danger ml-unset">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Deletar 
+                        </button> 
+                    </form> 
+                    <Button href={'actions?'+this.state.id} type="button" className="btn btn-success"><i class="fa fa-cubes" aria-hidden="true"></i> Montar trajetórias</Button> 
+                </div>
+                </div>
+            </div>
+            <div className="cardauth cardauth-desktop ">
+                <div className="card-info col-sm-5">     
                     <span> Dispositivo: {this.state.id} </span> 
                     <span> Dispositivo: {this.state.device_name} </span> 
                     <span className="user"> Usuário: {this.state.user_name} </span> 
                 </div>
-                <div className="col-sm-2">
+                <div className="acoes col-sm-7 justify-content-flex-end">
                     <form onSubmit={this.handleSubmit}>
-                        <button type="submit" className="btn btn-primary">
-                            Deletar 
+                        <button type="submit" className="btn btn-danger pull-right">
+                            <i class="fa fa-trash" aria-hidden="true"></i> Deletar 
                         </button> 
                     </form> 
+                    <Button href={'actions?'+this.state.id} type="button" className="btn btn-success pull-right mr-unset"><i class="fa fa-cubes" aria-hidden="true"></i> Montar trajetórias</Button> 
                 </div>
-                <div className="col-sm-2">
-                    <a href={'actions?'+this.state.id} type="button" className="btn btn-success">
-                        Ações
-                    </a> 
-                </div>
+            </div>
             </div>
         );
     }

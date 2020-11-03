@@ -1,5 +1,7 @@
 import React, { Component } from 'react';  
 import api from "../services/api";
+import Button from 'react-bootstrap/Button';
+
 
 import './SimpleDevice.css'
 
@@ -55,12 +57,13 @@ class SimpleDevice extends Component {
                         <span> {this.state.name} </span> 
                         <span className="status"> {this.state.status} </span> 
                     </div>
-                    <form onSubmit={this.handleSubmit}>
+                    {/*<form onSubmit={this.handleSubmit}>
                         <button type="submit" className="btn btn-primary">
                             
                             {this.deviceState ? "Acionar" : "Deligar" }
                         </button> 
-                    </form> 
+                    </form>*/} 
+                    <Button href={'actions?'+this.state.id} type="button" className="btn btn-success pull-right mr-unset"><i class="fa fa-cubes" aria-hidden="true"></i> Montar trajetórias</Button> 
                   </header>
             </div> 
         );

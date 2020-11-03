@@ -9,6 +9,12 @@
 }
 
 #device_card {
-    width: 600px;
+    /*width: 600px;*/
     background: #fff;
+}
+
+@media (min-width: 992px) {
+	#device_card {
+    	width: 600px;
+    }
 }

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router'
 import Footer from '../components/Footer'; 
 import AuthorizationCard from "../components/AuthorizationCard"
 
-import "../components/Authorization.css" 
+import "./Authorization.css" 
 
 import api from "../services/api";
 
@@ -111,60 +111,54 @@ class Authorizations extends Component {
 
     render() {
         return ( 
-            <div >
+            <div>
                 { (!isAuthenticated() ) ? 
-                <Redirect to="/login"/> : 
-            <div className="container"> 
- 
+                    <Redirect to="/login"/> : 
+                    <div className="container"> 
+                        <div className="card" id="auth_card_edit">
+                            <div className="card-body">
+
+                                <form>
+                                    <h3> Autorização </h3>
+                                    <div className="form-group">
+                                        <label htmlFor="selectDevices">Dispositivos:</label>
+                                        <select className="form-control"  value={this.state.value} onChange={this.handleChangeDevices} id="selectedIdDevice">
 
 
+                                            {this.state.devices.map((device, index) => (
+                                                <option value={index} key={index}>{device.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
 
-            <div className="card" id="auth_card_edit">
-            <div className="card-body">
-
-                <form>
-                    <h3> Autorização </h3>
-                    <div className="form-group">
-                        <label htmlFor="selectDevices">Dispositivos:</label>
-                        <select className="form-control"  value={this.state.value} onChange={this.handleChangeDevices} id="selectedIdDevice">
-
-
-                            {this.state.devices.map((device, index) => (
-                                <option value={index} key={index}>{device.name}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="selectUsers">Usuários:</label>
-                        <select className="form-control"  value={this.state.value} onChange={this.handleChangeUsers} id="selectUsers">
+                                    <div className="form-group">
+                                        <label htmlFor="selectUsers">Usuários:</label>
+                                        <select className="form-control"  value={this.state.value} onChange={this.handleChangeUsers} id="selectUsers">
 
 
-                            {this.state.users.map((user, index) => (
-                                <option value={index} key={index}>{user.userName}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <button type="submit" className="btn btn-primary"onClick={this.submitAuthorization} >Autorizar</button>
-                    
-                    
-                </form>
-            </div>
-            </div>
+                                            {this.state.users.map((user, index) => (
+                                                <option value={index} key={index}>{user.userName}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary"onClick={this.submitAuthorization} >Autorizar</button>
+                                    
+                                    
+                                </form>
+                            </div>
+                        </div>
 
-            <section id="auth-list">
-            {this.state.authorizations.map((authori, index) => (
-                <AuthorizationCard key={index}>
-                {authori}
-                </AuthorizationCard>
-            ))}
-            </section>
+                        <section id="auth-list">
+                        {this.state.authorizations.map((authori, index) => (
+                            <AuthorizationCard key={index}>
+                            {authori}
+                            </AuthorizationCard>
+                        ))}
+                        </section>
 
-            </div> 
-            }
-            <Footer>
-
-            </Footer>
+                    </div> 
+                }
+                <Footer></Footer>
             </div>
         );
     }

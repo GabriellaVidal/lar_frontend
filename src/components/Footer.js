@@ -48,9 +48,9 @@ class Footer extends Component {
             <footer>
                 {this.renderRedirect()}
                  <ButtonGroup aria-label="Basic example">
-                  <Button type="button" variant="secondary" size="lg" onClick={()=> this.redirecionamentosFooterMenu('user')}><i class="fa fa-users fa-2x" aria-hidden="true"></i></Button>
-                  <Button type="button" variant="secondary" size="lg" onClick={()=> this.redirecionamentosFooterMenu('devices')}><i class="fa fa-rocket fa-2x" aria-hidden="true"></i></Button>
-                  <Button type="button" variant="secondary" size="lg" onClick={()=> this.redirecionamentosFooterMenu('authorizations')}><i class="fa fa-check fa-2x" aria-hidden="true"></i></Button>
+                  <Button type="button" variant="secondary" onClick={()=> this.redirecionamentosFooterMenu('user')}><i class="fa fa-cubes fa-lg" aria-hidden="true"></i> Montar trajetórias</Button>
+                  <Button type="button" variant="secondary" onClick={()=> this.redirecionamentosFooterMenu('devices')}><i class="fa fa-rocket fa-lg" aria-hidden="true"></i> Novo Robô</Button>
+                  <Button type="button" variant="secondary" onClick={()=> this.redirecionamentosFooterMenu('authorizations')}><i class="fa fa-check fa-lg" aria-hidden="true"></i> Autorizações</Button>
                 </ButtonGroup>
                 {/*<div className="footer-content">
                     <p>{this.state.userName}</p>
