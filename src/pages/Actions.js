@@ -304,20 +304,19 @@ class Actions extends Component {
                     <Redirect to="/login"/> : 
                     <div className="container cardauth">
                         <div className="row">
-                        {
-                            window.innerWidth > 500 ?
-                            <DndProvider backend={HTML5Backend}>
-                                <Example/>
-                            </DndProvider>
-                            :
-                            <DndProvider backend={TouchBackend} options={backendOptions}>
-                                <Example/>
-                            </DndProvider>
-                        }
-                        </div>
-                        <div className="row">
-                            <div className="container">
-                                <div className="col-sm-2">
+                            {
+                                window.innerWidth > 500 ?
+                                <DndProvider backend={HTML5Backend}>
+                                    <Example/>
+                                </DndProvider>
+                                :
+                                <DndProvider backend={TouchBackend} options={backendOptions}>
+                                    <Example/>
+                                </DndProvider>
+                            }
+                        
+                            <div className="col-sm-10">
+                                <div className="col-sm-2 pull-right button-play">
                                     <button type="button" className="btn btn-info" id="botaoPlay" onClick={()=> this.playCarrinho()}>
                                         <i className="fa fa-play" aria-hidden="true"></i>
                                     </button>

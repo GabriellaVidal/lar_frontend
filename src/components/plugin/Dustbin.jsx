@@ -42,7 +42,7 @@ const Dustbin = ({ accept, lastDroppedItem, onDrop, droppedBoxNames}) => {
         : 'Arraste para montar Função'}</p>
 
       {lastDroppedItem && (
-        <div id="boxPreenchido" style={{ display: 'flex', flexDirection: 'row', margin: 'auto', alignItems: 'center'}}>
+        <div id="boxPreenchido" style={{ display: 'flex', flexDirection: 'row', margin: 'auto', alignItems: 'center', 'flex-wrap': 'wrap'}}>
           {(() => {
             const buttons = [];
             for (let i = 0; i < droppedBoxNames.length; i++) {

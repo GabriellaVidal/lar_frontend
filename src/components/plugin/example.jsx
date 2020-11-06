@@ -45,7 +45,7 @@ const Container = () => {
     [droppedBoxNames, dustbins],
   )
   return (
-    <div className="container" style={{ ...style}}>
+    <div className="" style={{ ...style}}>
       <div className="col-sm-2">
         <div>
           {boxes.map(({ name, classeName, html, type }, index) => (
@@ -73,7 +73,6 @@ const Container = () => {
           ))}
         </div>
       </div>
-
     </div>
   )
 }
