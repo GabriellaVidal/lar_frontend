@@ -9,11 +9,31 @@ import Example from '../components/plugin/example';
 import CreateFunction from '../components/plugin/createFunction';
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-// import { TouchBackend } from 'react-dnd-touch-backend'
+import { TouchBackend } from 'react-dnd-touch-backend'
 
 import api from "../services/api";
 
 import "../components/Action.css" 
+
+const hasNative =
+document && (document.elementsFromPoint || document.msElementsFromPoint)
+
+function getDropTargetElementsAtPoint(x, y, dropTargets) {
+    return dropTargets.filter(t => {
+      const rect = t.getBoundingClientRect()
+      return (
+        x >= rect.left &&
+        x <= rect.right &&
+        y <= rect.bottom &&
+        y >= rect.top
+      )
+    })
+}
+
+// use custom function only if elementsFromPoint is not supported
+const backendOptions = {
+    getDropTargetElementsAtPoint: !hasNative && getDropTargetElementsAtPoint,
+}
 
 class Actions extends Component { 
     constructor(props){ 
@@ -284,9 +304,16 @@ class Actions extends Component {
                     <Redirect to="/login"/> : 
                     <div className="container cardauth">
                         <div className="row">
+                        {
+                            window.innerWidth > 500 ?
                             <DndProvider backend={HTML5Backend}>
                                 <Example/>
                             </DndProvider>
+                            :
+                            <DndProvider backend={TouchBackend} options={backendOptions}>
+                                <Example/>
+                            </DndProvider>
+                        }
                         </div>
                         <div className="row">
                             <div className="container">
