@@ -39,6 +39,7 @@ footer p {
 footer .btn-group .btn-secondary{
     margin:unset;
     border-radius: unset;
+    /*color: #fff;*/
     color: #FDA23C;
     width: 100%;
     background-color: rgba(108, 117, 125, 0.9);
@@ -47,6 +48,7 @@ footer .btn-group .btn-secondary{
     align-items: center;
     justify-content: flex-end;
     font-weight: 700;
+    font-size: 13px;
 }
 
 footer .btn-group .btn-secondary i{

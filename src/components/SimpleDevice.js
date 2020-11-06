@@ -55,7 +55,6 @@ class SimpleDevice extends Component {
                   <header> 
                     <div className="device-info">     
                         <span> {this.state.name} </span> 
-                        <span className="status"> {this.state.status} </span> 
                     </div>
                     {/*<form onSubmit={this.handleSubmit}>
                         <button type="submit" className="btn btn-primary">

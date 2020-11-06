@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Footer from '../components/Footer';
+import { isAuthenticated } from '../services/auth'; 
  
 import './Devices.css';
 import api from "../services/api";
@@ -60,6 +61,10 @@ class Devices extends Component {
                 [e.target.name]: e.target.value
             }
         )
+    }
+
+    async componentDidMount() {
+        document.title = "Novo Robô";
     }
 
     render() {

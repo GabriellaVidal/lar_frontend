@@ -2,7 +2,7 @@
 
 header#main-header {
     background: #fff; 
-    height: 90px;
+    height: 82px;
     border-bottom: 1px solid #BBB; 
 }
 
@@ -36,4 +36,25 @@ header#main-header .header-content {
 .info-user h4{
     color: #000;
     font-weight: 700;
+}
+
+header#main-header .header-content h1{
+    margin-bottom: unset;
+}
+
+header#main-header .header-content h3{
+    font-weight: 700;
+    color: #FDA23C;
+    margin-bottom: unset;
+    padding-left: 20px;
+    /*box-shadow: 10px 5px 5px rgba(0,0,0,.125);*/
+}
+
+header#main-header .header-content .logo{
+    display: flex;
+    align-items: center;
+}
+
+header#main-header .header-content .btn{
+    margin: unset;
 }

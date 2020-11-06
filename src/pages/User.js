@@ -23,6 +23,7 @@ class User extends Component {
 
     populateAuthorizations = async () => {
         const request = await api.get('/authorization/devices');
+        console.log(request)
         if(request !== undefined){
             const data = request.data.authorizations;
             let auths = []; 
@@ -30,6 +31,7 @@ class User extends Component {
                 auths[i] = { 
                     name: data[i].name,
                     device_id: data[i].device_id,
+                    id: data[i].id,
                     status: "Desconectado."
                 }; 
             }
@@ -41,7 +43,7 @@ class User extends Component {
     async componentDidMount() {
 
         if (isAuthenticated()) {
-            document.title = "Devices";
+            document.title = "Montar Trajetória";
             await this.populateAuthorizations();
         }
     }

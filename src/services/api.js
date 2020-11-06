@@ -3,7 +3,8 @@ import { getToken } from "./auth";
 
 const api = axios.create({
   // baseURL: "http://api.orivaiot.tk"
-  baseURL: "http://localhost:3002"
+  baseURL: "http://192.168.1.2:3002"
+  // baseURL: "http://localhost:3002"
 });
 
 api.interceptors.request.use(async config => {

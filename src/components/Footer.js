@@ -35,7 +35,7 @@ class Footer extends Component {
 
     async componentDidMount() {
         this.setState({userName: getUserName()}); 
-        console.log("footer: "+getUserName() ); 
+        // console.log("footer: "+getUserName() ); 
     }
 
     async redirecionamentosFooterMenu(url){

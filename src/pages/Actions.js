@@ -9,6 +9,7 @@ import Example from '../components/plugin/example';
 import CreateFunction from '../components/plugin/createFunction';
 import { DndProvider } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
+// import { TouchBackend } from 'react-dnd-touch-backend'
 
 import api from "../services/api";
 
@@ -39,7 +40,7 @@ class Actions extends Component {
 
     async componentDidMount() {
         if (isAuthenticated()) {
-            document.title = "Ações";
+            document.title = "Programar com blocos";
             await this.populateAuthorization(); 
             // this.subscribe();
         }
@@ -131,8 +132,10 @@ class Actions extends Component {
                     user: this.state.authorization.user_id, 
                     value: JSON.stringify("finalizado")
                 });
-        if(response.data.subscribe == 'feito'){
-            swal("Parabéns!", "Trajeto Finalizado!", "success");
+        console.log('response.data.subscribe', response.data.subscribe);
+        if(response.data.subscribe == 'feito' || response.data.subscribe == 'VERMELHO' || response.data.subscribe == 'VERDE' || response.data.subscribe == 'AZUL' || response.data.subscribe == 'PRETO'){
+            const mensagem = response.data.subscribe != 'feito' ? "Trajeto Finalizado! Você checgou no destino "+response.data.subscribe+"! " : "Trajeto Finalizado!";
+            swal("Parabéns!", mensagem, "success");
         } else {
             swal("OPs!", "Problemas ao finalizar", "error");
         }
