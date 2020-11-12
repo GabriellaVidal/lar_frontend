@@ -29,3 +29,38 @@
         margin: unset;
     }
 }
+
+.VERMELHO{
+    background-color: red;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    padding: 5px 40px;
+}
+.VERDE{
+    background-color: green;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    padding: 5px 40px;
+}
+.AZUL{
+    background-color: blue;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    padding: 5px 40px;
+}
+.PRETO{
+    background-color: black;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    padding: 5px 40px;
+}
+
+.BRANCO{
+    padding: 5px 40px;
+    border: 1px solid #ddd;
+}
+
+.swal-content p{
+    color: rgba(0,0,0,.65) !important;
+    border: unset;
+}

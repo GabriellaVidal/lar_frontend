@@ -153,9 +153,16 @@ class Actions extends Component {
                     value: JSON.stringify("finalizado")
                 });
         console.log('response.data.subscribe', response.data.subscribe);
-        if(response.data.subscribe == 'feito' || response.data.subscribe == 'VERMELHO' || response.data.subscribe == 'VERDE' || response.data.subscribe == 'AZUL' || response.data.subscribe == 'PRETO'){
-            const mensagem = response.data.subscribe != 'feito' ? "Trajeto Finalizado! Você checgou no destino "+response.data.subscribe+"! " : "Trajeto Finalizado!";
-            swal("Parabéns!", mensagem, "success");
+        if(response.data.subscribe == 'feito' || response.data.subscribe == 'VERMELHO' 
+            || response.data.subscribe == 'VERDE' || response.data.subscribe == 'AZUL' 
+            || response.data.subscribe == 'PRETO' || response.data.subscribe == 'BRANCO'){
+
+            const mensagem = response.data.subscribe != 'feito' ? "Trajeto Finalizado! Você chegou no destino <span class='"+response.data.subscribe+"'></span> ! " : "Trajeto Finalizado!";
+            var html = document.createElement("p");
+            html.innerHTML = mensagem;
+
+            swal({ title: 'Parabéns!', content: html, icon: 'success'});
+            // swal("Parabéns!", mensagem, "success");
         } else {
             swal("OPs!", "Problemas ao finalizar", "error");
         }
